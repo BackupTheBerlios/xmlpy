@@ -1,0 +1,100 @@
+<p>XML-based Python Specification</p>
+
+<p>Version 0.1</p>
+
+<ol><li><p>License</p>
+<p>        Copyright (c) 2001, Fraunhofer ISST (http://www.isst.fhg.de)
+        All rights reserved.</p>
+
+<p>        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions
+        are met:</p>
+<p>             Redistributions of source code must retain the above copyright
+             notice, this list of conditions and the following disclaimer.
+             Redistributions in binary form must reproduce the above
+             copyright notice, this list of conditions and the following
+             disclaimer in the documentation and/or other materials provided
+             with the distribution.
+             Neither the name of the Fraunhofer ISST, Germany nor the names of its
+             contributors may be used to endorse or promote products derived
+             from this software without specific prior written permission.</p>
+
+
+<p>        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+        "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+        LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+        FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+        REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+        INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+        BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+        LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+        CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+        LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+        ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF</p>
+
+
+</li>
+<li><p>Introduction</p>
+<p>  <strong>XML-based Python</strong> is a XML-based syntax for the object-oriented programming
+  language <a href="http://www.python.org/">Python</a> for scripting. The idea is to generate
+  XML-based Python programs by XML stylesheet transformations
+  (<a href="http://www.w3c.org/)">XSLT</a> and translate the resulting XML document into
+  normal Python syntax for execution. One application for this idea are to
+  tranform a dynamic HTML template like a "Python Server Page" (PSP) into servlet
+  code for an application server for example the <a href="http://webware.sourceforge.net">Webware
+  Server.</a></p>
+
+<p>  Look to the following simple example:</p>
+
+<p>  <pre>
+  &lt;?xml version = "1.0" encoding = "UTF8"?&gt;
+  &lt;!DOCTYPE python SYSTEM "xmlpy.dtd"&gt;
+  &lt;python&gt;
+    &lt;def name = "fac"&gt;
+      &lt;parameter name = "x" default = "1"/&gt;
+      &lt;if&gt;
+        &lt;condition expr = "x == 1"&gt;
+          &lt;return&gt;
+            &lt;expr&gt;1&lt;/expr&gt;
+          &lt;/return&gt;
+        &lt;/condition&gt;
+        &lt;else&gt;
+          &lt;return&gt;
+            &lt;expr&gt;x * fac(x-1)&lt;/expr&gt;
+          &lt;/return&gt;
+        &lt;/else&gt;
+      &lt;/if&gt;
+    &lt;/def&gt;
+    &lt;print&gt;
+      &lt;expr&gt;fac(3)&lt;/expr&gt;
+    &lt;/print&gt;
+  &lt;/python&gt;
+  </pre></p>
+
+<p>  This xmlpy document is equivalent to the following Python program:</p>
+
+<p>  def fac(x=1):
+    if x == 1:
+      return 1
+    else:
+      return x * fac(x-1)</p>
+
+<p>  print fac(3)</p>
+
+<p>  This looks quite simple!</p>
+
+
+</li>
+<li><p>XML scheme</p>
+<p>  <strong>xmlpy</strong> is defined by a documented XML scheme ("xmlpy.xsd"). Additionally
+  there is a DTD ("xmlpy.dtd"). The design principle for the XML scheme is to
+  translate all Python statements to XML elements. Expressions can be written as
+  usual. The base syntax is Python Version 2.1.</p>
+
+<p>
+<TABLE BORDER=1 CELLPADDING=2>
+</TABLE></p>
+
+
+</li></ol>
+
